@@ -1,0 +1,93 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CONTAINER */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 430px;
+    height: 700px;
+    border-radius: 30px;
+    box-shadow: 0 1px 16px 0 rgba(0, 0, 0, 0.5), 0 10px 30px 0 rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.363);
+}
+
+.output {   
+    height: 200px;
+    margin: 40px;
+    background: white;
+    border: 0.5px solid rgba(0, 0, 0, 0.082);
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+/* BUTTONS */
+
+.btnContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 30px;
+    gap: 10px;
+}
+
+.buttons.operators {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-grow: 1;
+}
+
+.buttons.numbers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 290px;
+    height: 400px;
+    margin-left: -10px;
+}
+
+.buttons.operators button{
+    background-color: #e90b0b2f;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.226) 0 1px 3px 0;
+    height: 60px;
+    width: 60px;
+}
+
+.buttons.numbers button {
+    background-color: #dddddd2f;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.226) 0 1px 3px 0;
+    height: 70px;
+    width: 70px;
+}
+
+.buttons.numbers button:active {
+    background-color: #EDEFF2;
+    box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+    transition: none 0s;
+}
+
+.buttons.operators button:active {
+    background-color: #e90b0b49;
+    box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+    transition: none 0s;
+}
