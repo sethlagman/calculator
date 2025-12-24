@@ -68,6 +68,7 @@ function operate([num1, op, num2]) {
 function calculate(expression) {
     const opr = ['*', '/', '-', '+']
     let splitExpression = expression.split(/([*\/]|\b\s*-|\b\s*\+)/g)
+
     for (op of opr) {
         while (splitExpression.includes(op)) {
             const indexOp = splitExpression.indexOf(op)
@@ -75,5 +76,16 @@ function calculate(expression) {
             splitExpression.splice(indexOp - 1, 0, operate(subExpression))
         }
     }
-    return splitExpression[0]
+    const calculated = splitExpression[0]
+
+    switch (isNaN(calculated) || calculated) {
+        case true:
+            return 'Invalid input'
+        case Infinity:
+        case -Infinity:
+            return 'Division by zero not allowed'
+        default:
+            return calculated
+    }
+
 }
