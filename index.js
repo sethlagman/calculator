@@ -20,12 +20,60 @@ buttons.forEach((button) => {
     button.addEventListener('click', (event) => {
         event.stopPropagation()
 
-        if (event.target.className != 'clear') {
+        if (event.target.className == 'clear') {
+            output.textContent = ''
+        } else if (event.target.className == 'equal') {
+            const input = output.textContent.trim()
+            const value = calculate(input)
+            output.textContent = value
+        } else {
             const number = event.target.textContent
             output.textContent += number
-        } else {
-            output.textContent = ''
         }
         
     })
 })
+
+function add(a, b) {
+    return a + b
+}
+
+function subtract(a, b) {
+    return a - b
+}
+
+function multiply(a, b) {
+    return a * b
+}
+
+function divide(a, b) {
+    return a / b
+}
+
+function operate([num1, op, num2]) {
+    let n1 = parseFloat(num1)
+    let n2 = parseFloat(num2) 
+    switch (op) {
+        case '+':
+            return add(n1, n2)
+        case '-':
+            return subtract(n1, n2)
+        case '*':
+            return multiply(n1, n2)
+        case '/':
+            return divide(n1, n2)
+    }
+}
+
+function calculate(expression) {
+    const opr = ['*', '/', '-', '+']
+    let splitExpression = expression.split(/([*\/]|\b\s*-|\b\s*\+)/g)
+    for (op of opr) {
+        while (splitExpression.includes(op)) {
+            const indexOp = splitExpression.indexOf(op)
+            const subExpression = splitExpression.splice(indexOp - 1, 3)
+            splitExpression.splice(indexOp - 1, 0, operate(subExpression))
+        }
+    }
+    return splitExpression[0]
+}
