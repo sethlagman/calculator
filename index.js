@@ -22,10 +22,24 @@ buttons.forEach((button) => {
 
         if (event.target.className == 'clear') {
             output.textContent = ''
+
         } else if (event.target.className == 'equal') {
             const input = output.textContent.trim()
             const value = calculate(input)
             output.textContent = value
+
+        } else if (event.target.className == 'point') {
+            const input = output.textContent.trim()
+            const splittedExpression = input.split(/([*\/]|\b\s*-|\b\s*\+)/g)
+            const digits = splittedExpression.filter((digit) => {
+                if (!['+', '-', '*', '/'].includes(digit)) return digit
+            })
+            const decimal = event.target.textContent
+            
+            if (!digits.at(-1).includes('.')) {
+                output.textContent += decimal
+            }
+
         } else {
             const number = event.target.textContent
             output.textContent += number
