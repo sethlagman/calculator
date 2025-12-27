@@ -21,6 +21,46 @@ btnNumbers.appendChild(backspace)
 const output = document.querySelector('.output')
 const buttons = document.querySelectorAll('button')
 
+document.addEventListener('keydown', (event) => {
+    const key = event.key
+    const allowedKeys = [
+        '0', '1', '2', '3',
+        '4', '5', '6', '7',
+        '8', '9', '10', '+',
+        '-', '*', '/',
+    ]
+    
+    if (allowedKeys.includes(key)) {
+        output.textContent += key
+
+    } else if (key == 'Backspace') {
+        const input = output.textContent.trim()
+        const splitExpression = input.split('')
+        splitExpression.pop()
+        output.textContent = splitExpression.join('')
+
+    } else if (key == 'Enter') {
+        const input = output.textContent.trim()
+        const value = calculate(input)
+        output.textContent = value
+
+    } else if (key == '.') {
+        const input = output.textContent.trim()
+        
+        if (!input) return
+
+        const splittedExpression = input.split(/([*\/]|\b\s*-|\b\s*\+)/g)
+        const digits = splittedExpression.filter((digit) => {
+            if (!['+', '-', '*', '/'].includes(digit)) return digit
+        })
+        
+        if (!digits.at(-1).includes('.')) {
+            output.textContent += '.'
+        }
+    }
+
+})
+
 buttons.forEach((button) => {
     button.addEventListener('click', (event) => {
         event.stopPropagation()
