@@ -13,6 +13,11 @@ for (let i = 0; i <= 9; i++) {
     btnNumbers.appendChild(numButton)
 }
 
+const backspace = document.createElement('button')
+backspace.className ='backspace'
+backspace.textContent = '⌫'
+btnNumbers.appendChild(backspace)
+
 const output = document.querySelector('.output')
 const buttons = document.querySelectorAll('button')
 
