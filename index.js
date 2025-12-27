@@ -47,16 +47,19 @@ document.addEventListener('keydown', (event) => {
     } else if (key == '.') {
         const input = output.textContent.trim()
         
-        if (!input) return
-
-        const splittedExpression = input.split(/([*\/]|\b\s*-|\b\s*\+)/g)
-        const digits = splittedExpression.filter((digit) => {
-            if (!['+', '-', '*', '/'].includes(digit)) return digit
-        })
-        
-        if (!digits.at(-1).includes('.')) {
-            output.textContent += '.'
+        try {
+            const splittedExpression = input.split(/([*\/]|\b\s*-|\b\s*\+)/g)
+            const digits = splittedExpression.filter((digit) => {
+                if (!['+', '-', '*', '/'].includes(digit)) return digit
+            })
+            
+            if (!digits.at(-1).includes('.')) {
+                output.textContent += '.'
+            }
+        } catch (error) {
+            return
         }
+
     }
 
 })
@@ -76,16 +79,18 @@ buttons.forEach((button) => {
         } else if (event.target.className == 'point') {
             const input = output.textContent.trim()
             
-            if (!input) return
-
-            const splittedExpression = input.split(/([*\/]|\b\s*-|\b\s*\+)/g)
-            const digits = splittedExpression.filter((digit) => {
-                if (!['+', '-', '*', '/'].includes(digit)) return digit
-            })
-            const decimal = event.target.textContent
-            
-            if (!digits.at(-1).includes('.')) {
-                output.textContent += decimal
+            try {
+                const splittedExpression = input.split(/([*\/]|\b\s*-|\b\s*\+)/g)
+                const digits = splittedExpression.filter((digit) => {
+                    if (!['+', '-', '*', '/'].includes(digit)) return digit
+                })
+                const decimal = event.target.textContent
+                
+                if (!digits.at(-1).includes('.')) {
+                    output.textContent += decimal
+                }
+            } catch (error) {
+                return
             }
 
         } else if (event.target.className == 'backspace') {
