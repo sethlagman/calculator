@@ -48,6 +48,12 @@ buttons.forEach((button) => {
                 output.textContent += decimal
             }
 
+        } else if (event.target.className == 'backspace') {
+            const input = output.textContent.trim()
+            const splitExpression = input.split('')
+            splitExpression.pop()
+            output.textContent = splitExpression.join('')
+
         } else {
             const number = event.target.textContent
             output.textContent += number
