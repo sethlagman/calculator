@@ -30,6 +30,9 @@ buttons.forEach((button) => {
 
         } else if (event.target.className == 'point') {
             const input = output.textContent.trim()
+            
+            if (!input) return
+
             const splittedExpression = input.split(/([*\/]|\b\s*-|\b\s*\+)/g)
             const digits = splittedExpression.filter((digit) => {
                 if (!['+', '-', '*', '/'].includes(digit)) return digit
